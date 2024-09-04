@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="LineChunker">
+      <import location="LineChunker.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="TopCounter">
+      <import location="Counter.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="LineAggregate">
+      <import location="LineAggregate.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="ExitCounter">
+      <import location="Counter.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="Writer">
+      <import location="XmiWriterCasConsumer.xml"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>Top Aggregate</name>
+    <description>For testing</description>
+    <version>1.0</version>
+    <vendor>DrDub</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>TopCounterFile</name>
+        <description>File to write the top counts</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>TopCounter/Filename</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ExitCounterFile</name>
+        <description>File to write the exit counts</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>ExitCounter/Filename</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputDirectory</name>
+        <description>Where to write the XMIs</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>Writer/OutputDirectory</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>TopCounterFile</name>
+        <value><string>top.txt</string></value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ExitCounterFile</name>
+        <value><string>exit.txt</string></value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputDirectory</name>
+        <value>
+          <string>out</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+	<node>LineChunker</node>
+	<node>TopCounter</node>
+	<node>LineAggregate</node>
+	<node>ExitCounter</node>
+	<node>Writer</node>
+      </fixedFlow>
+    </flowConstraints>
+    <!-- Capabilities: Inputs and Outputs -->
+    <capabilities>
+      <capability>
+	<inputs/>
+	<outputs>
+	  <type>duboue.Line</type>
+	  <type>duboue.Word</type>
+	</outputs>
+	<languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+</analysisEngineDescription>

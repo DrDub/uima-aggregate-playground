@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>net.duboue.uima.Chunker</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Line Chunker</name>
+    <description>Annotates Lines</description>
+    <version>1.0</version>
+    <vendor>DrDub</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>Type</name>
+        <description>Type to annotate each chunk.</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>Delimiter</name>
+        <description>Chunk delimiter.</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>Type</name>
+        <value><string>duboue.Line</string></value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>Delimiter</name>
+        <value><string>\n</string></value>
+      </nameValuePair>
+    </configurationParameterSettings>    
+    <typeSystemDescription>
+      <types>
+        <typeDescription>
+          <name>duboue.Line</name>
+          <description>Text line</description>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+          <features/>
+        </typeDescription>
+      </types>
+    </typeSystemDescription>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type>duboue.Line</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>	  
+  </analysisEngineMetaData>
+</analysisEngineDescription>

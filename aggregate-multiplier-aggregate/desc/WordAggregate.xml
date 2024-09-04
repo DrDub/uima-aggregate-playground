@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="WordSplitter">
+      <import location="WordSplitter.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WordCounter">
+	<import location="Counter.xml"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>Word Aggregate</name>
+    <description>For testing</description>
+    <version>1.0</version>
+    <vendor>DrDub</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>CounterFile</name>
+        <description>File to write the word counts</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>WordCounter/Filename</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>CounterFile</name>
+        <value><string>words.txt</string></value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+	<node>WordSplitter</node>
+	<node>WordCounter</node>
+      </fixedFlow>
+    </flowConstraints>
+    <!-- Capabilities: Inputs and Outputs -->
+    <capabilities>
+      <capability>
+	<inputs>
+	  <type>duboue.Word</type>
+        </inputs>
+	<outputs/>
+	<languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+</analysisEngineDescription>

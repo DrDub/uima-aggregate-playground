@@ -1,0 +1,6 @@
+out/*.xmi
+exit.txt
+lines.txt
+top.txt
+words.txt
+target/

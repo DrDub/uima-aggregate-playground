@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="LineSplitter">
+      <import location="LineSplitter.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="LineCounter">
+	<import location="Counter.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WordChunker">
+	<import location="WordChunker.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WordAggregate">
+	<import location="WordAggregate.xml"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>Line Aggregate</name>
+    <description>For testing</description>
+    <version>1.0</version>
+    <vendor>DrDub</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>CounterFile</name>
+        <description>File to write the top counts</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>LineCounter/Filename</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>CounterFile</name>
+        <value><string>lines.txt</string></value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+	<node>LineSplitter</node>
+	<node>LineCounter</node>
+	<node>WordChunker</node>
+	<node>WordAggregate</node>
+      </fixedFlow>
+    </flowConstraints>
+    <!-- Capabilities: Inputs and Outputs -->
+    <capabilities>
+      <capability>
+	<inputs>
+	  <type>duboue.Line</type>
+        </inputs>
+	<outputs>
+	  <type>duboue.Word</type>
+	</outputs>
+	<languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+</analysisEngineDescription>

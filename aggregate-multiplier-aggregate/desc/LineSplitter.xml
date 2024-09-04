@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>net.duboue.uima.Splitter</annotatorImplementationName>
+ 
+  <analysisEngineMetaData>
+    <name>Line Splitter</name>
+    <description></description>
+    <version>1.0</version>
+    <vendor>DrDub</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>Type</name>
+        <description>Type split each chunk.</description>
+        <type>String</type>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>Type</name>
+        <value><string>duboue.Line</string></value>
+      </nameValuePair>
+    </configurationParameterSettings>    
+    <typeSystemDescription>
+      <types>
+        <typeDescription>
+          <name>duboue.Line</name>
+          <description>Text line</description>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+          <features/>
+        </typeDescription>
+      </types>
+    </typeSystemDescription>
+    <capabilities>
+      <capability>
+        <inputs>
+          <type>duboue.Line</type>
+        </inputs>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>	  
+  </analysisEngineMetaData>
+</analysisEngineDescription>
